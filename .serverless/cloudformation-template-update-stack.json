@@ -105,7 +105,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-chart-processor/dev/1579261043399-2020-01-17T11:37:23.399Z/serverless-chart-processor.zip"
+          "S3Key": "serverless/serverless-chart-processor/dev/1579271824061-2020-01-17T14:37:04.061Z/serverless-chart-processor.zip"
         },
         "FunctionName": "serverless-chart-processor-dev-server",
         "Handler": "index.server",
@@ -116,7 +116,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs10.x",
         "Timeout": 6
       },
       "DependsOn": [
@@ -124,14 +124,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "ServerLambdaVersion1Z6q07eErZ1bpdQQKXqjfWsSqbcZA5P0MnRwBKnP9bg": {
+    "ServerLambdaVersionjnXtqETLjirYAG4OwTjoLgEP9MaABJ7rFmHuxb41g": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ServerLambdaFunction"
         },
-        "CodeSha256": "mIN/DWVmPA8+WcoevlRROvU20LmsDPF6e4rrdP//7Nc="
+        "CodeSha256": "eJLOBu/b1UI3VSOAqnXbR4cwZif1T9xRJ6VpHBfVCmE="
       }
     },
     "ApiGatewayRestApi": {
@@ -249,7 +249,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1579261037455": {
+    "ApiGatewayDeployment1579271817175": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -309,7 +309,7 @@
     "ServerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ServerLambdaVersion1Z6q07eErZ1bpdQQKXqjfWsSqbcZA5P0MnRwBKnP9bg"
+        "Ref": "ServerLambdaVersionjnXtqETLjirYAG4OwTjoLgEP9MaABJ7rFmHuxb41g"
       }
     },
     "ServiceEndpoint": {
