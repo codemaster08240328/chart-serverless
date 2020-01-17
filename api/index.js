@@ -4,6 +4,8 @@ require("chart.js");
 const express = require('express');
 const { CanvasRenderService } = require("chartjs-node-canvas");
 const fs = require('fs')
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
 
 const router = express.Router();
 
@@ -37,9 +39,20 @@ router.post('/chart', async(req, res) => {
     const data = req.body 
 
     const buffer = await drawChart(data);
+    const bucketName = 'charts.methoddata.com';
     
-    fs.writeFileSync('./img/chartjs-example.png', buffer)
-    res.json({data});
+    const fileName = "charts/Pipeline-" + new Date().toISOString() + '.png';
+    
+    s3.upload({
+        Key: fileName,
+        Body: buffer,
+        Bucket: bucketName,
+        ContentType: 'image/png'
+    }, (err, data) => {
+        console.log('err', err)
+        console.log('data', data)
+        res.json({err, data});
+    })
 })
 
 module.exports = router;
