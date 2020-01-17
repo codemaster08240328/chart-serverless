@@ -1,0 +1,32 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: [10.16.0]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install
+      run: npm ci
+    - name: npm build
+      run: npm run build
+    - name: npm test
+      run: npm run test
+    - name: npm publish
+      run: |
+        npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+        npm run trypublish
+      env:
+        CI: true
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
